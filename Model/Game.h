@@ -5,14 +5,16 @@
 #include <vector>
 
 struct Game {
-    int numPlayers;
-    int playersRemaining;
-    std::vector<Player> players;
-    bool isGameOver;
-    std::vector<Country> countries;
+    int m_numPlayers;
+    int m_playersRemaining;
+    std::vector<Player> m_players;
+    bool m_isGameOver;
+    std::vector<Country> m_countries;
+    int const NUM_COUNTRIES = 195;
 
-    Game(int numPlayers) : numPlayers(numPlayers), playersRemaining(0), isGameOver(false) {
-        players.reserve(numPlayers);
+    Game(int numPlayers) : m_numPlayers(numPlayers), m_playersRemaining(0), m_isGameOver(false) {
+        m_players.reserve(numPlayers);
+        m_countries.reserve(NUM_COUNTRIES);
         loadCountries();
     }
 
