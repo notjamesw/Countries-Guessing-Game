@@ -1,4 +1,4 @@
-#include "Game.h"
+#include "Model/Game.h"
 #include <iostream>
 
 int main() {

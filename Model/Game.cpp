@@ -14,7 +14,7 @@ void Game::loadCountries() {
     // could do 2 steps, first step to load from the txt file, second to add nicknames
 
     // load countries from txt file (semicolon separated file)
-    std::ifstream countriesFile("countries.txt");
+    std::ifstream countriesFile("build/countries.txt");
     if(!countriesFile) {
         std::cerr << "Could not open the countries file" << std::endl;
         return;
