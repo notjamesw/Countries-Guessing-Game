@@ -65,16 +65,34 @@ void Game::loadCountries() {
             }
         }
         m_countries.emplace_back(name, rank, population, worldShare, areaKm2);
+        for(char &c: name) {
+            c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+        }
+        // std::cout << name << std::endl;
+        m_hashmap[name] = m_countries.back();
         // Country curr(name, rank, population, worldShare, areaKm2);
         // curr.printCountry();
         // std::cout << "added country" << std::endl;
     }
+
 }
 
-void Game::runRound() {
-    
-}
+bool Game::checkAnswer(std::string input) {
+    for(char &c: input) {
+        c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+    }
 
-void Game::checkAnswer() {
-    return;
+    if(auto it = m_hashmap.find(input); it!=m_hashmap.end()) {
+        Country country = it->second;
+        if(m_guessed[country.m_rank-1]) {
+            // already guessed
+            std::cout << "already guessed" << std::endl;
+            return false;
+        } else {
+            m_guessed[country.m_rank-1] = true;
+            return true;
+        }
+    }
+    return false;
+
 }
