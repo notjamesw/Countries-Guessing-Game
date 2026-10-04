@@ -4,7 +4,7 @@
 #include <sstream>
 
 // controller will pass a vector of player names
-void Game::createPlayers(std::vector<std::string> names) {
+void Game::createPlayers(vector<string> names) {
     for(int i = 0; i < m_numPlayers; i++) {
         m_players.emplace_back(names[i]);
         std::cout << "Added Player " << i << ": " << names[i] << std::endl;
@@ -15,20 +15,20 @@ void Game::loadCountries() {
     // could do 2 steps, first step to load from the txt file, second to add nicknames
 
     // load countries from txt file (semicolon separated file)
-    std::ifstream countriesFile("build/countries.txt");
+    std::ifstream countriesFile("countries.txt");
     if(!countriesFile) {
         std::cerr << "Could not open the countries file" << std::endl;
         return;
     }
 
-    std::string row;
+    string row;
     while(std::getline(countriesFile, row)) {
         // std::cout << "Processing line:" << row << std::endl;
         std::stringstream rowStream(row);
-        std::string cell;
+        string cell;
 
         int rank;
-        std::string name;
+        string name;
         int population;
         float worldShare;
         int areaKm2;
@@ -77,7 +77,7 @@ void Game::loadCountries() {
 
 }
 
-bool Game::checkAnswer(std::string input) {
+bool Game::checkAnswer(string input) {
     for(char &c: input) {
         c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
     }
@@ -86,7 +86,7 @@ bool Game::checkAnswer(std::string input) {
         Country country = it->second;
         if(m_guessed[country.m_rank-1]) {
             // already guessed
-            std::cout << "already guessed" << std::endl;
+            cout << "already guessed" << endl;
             return false;
         } else {
             m_guessed[country.m_rank-1] = true;
@@ -94,5 +94,11 @@ bool Game::checkAnswer(std::string input) {
         }
     }
     return false;
+}
 
+bool Game::checkGameOver() {
+    if(m_playersRemaining == 1) {
+        m_isGameOver = true;
+    }
+    return m_isGameOver;
 }

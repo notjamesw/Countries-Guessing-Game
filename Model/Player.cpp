@@ -1,11 +1,11 @@
-#include <string>
+#include "lib/lib.h"
 
 struct Player {
-    std::string name;
+    string name;
     int numFails;
     int score;
 
-    Player(std::string name) : name(name), score(0), numFails(0) {}
+    Player(string name) : name(name), score(0), numFails(0) {}
 
     void increaseScore() {
         score++;

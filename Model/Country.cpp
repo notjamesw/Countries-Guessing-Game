@@ -1,19 +1,19 @@
 #include "Country.h"
-#include <iostream>
+#include "lib/lib.h"
 
-void Country::addNickname(std::string const nickname) {
+void Country::addNickname(string const nickname) {
     m_nicknames.emplace_back(nickname);
 }
 
-void Country::addNicknames(std::vector<std::string> & nicknames) {
+void Country::addNicknames(vector<string> & nicknames) {
     m_nicknames.reserve(m_nicknames.size() + nicknames.size());
     m_nicknames.insert(m_nicknames.end(), nicknames.begin(), nicknames.end());
 }
 
 void Country::printCountry() {
-    std::cout << "Rank: " << m_rank << " ";
-    std::cout << "Name: " << m_name << " ";
-    std::cout << "Population: " << m_population << " ";
-    std::cout << "WorldShare: " << m_worldShare << " ";
-    std::cout << "areaKm2: " << m_areaKm2 << std::endl;
+    cout << "Rank: " << m_rank << " ";
+    cout << "Name: " << m_name << " ";
+    cout << "Population: " << m_population << " ";
+    cout << "WorldShare: " << m_worldShare << " ";
+    cout << "areaKm2: " << m_areaKm2 << endl;
 }

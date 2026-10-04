@@ -1,8 +1,8 @@
-#include "Model/Game.h"
+#include "Controller/Controller.cpp"
 #include <iostream>
 
 int main() {
-    int numPlayers = 2;
-    Game * game = new Game(numPlayers);
+    Controller gameController;
+    gameController.startGame();
     return 0;
 }
